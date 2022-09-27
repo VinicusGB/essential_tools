@@ -4,6 +4,8 @@ Convert arquivos de pdf para o formato necessário
 # Importação das bibliotecas necessárias
 from datetime import date, datetime, timedelta
 from subprocess import os
+#from .. email import outlook
+from .. terminal import *
 
 dt_now = date.today()
 

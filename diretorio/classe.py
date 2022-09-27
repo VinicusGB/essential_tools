@@ -1,7 +1,5 @@
 from subprocess import os
 
-from functions import list_input_files, list_output_files
-
 class Diretorio():
     '''
     Classe base de diretório para projetos
