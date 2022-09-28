@@ -4,11 +4,11 @@ class Diretorio():
     '''
     Classe base de diretório para projetos
     '''
-    def __init__(self):
+    def __init__(self,projeto=''):
+        os.chdir(os.path.join(os.getcwd(),projeto))
         self.base = os.getcwd()
         self.input = os.path.join(self.base,'inputs')
         self.output = os.path.join(self.base,'outputs')
-        os.chdir(self.base)
     def __str__(self):
         return self.base
     def make(self):
