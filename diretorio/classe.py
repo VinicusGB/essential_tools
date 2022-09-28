@@ -8,17 +8,21 @@ class Diretorio():
         self.base = os.getcwd()
         self.input = os.path.join(self.base,'inputs')
         self.output = os.path.join(self.base,'outputs')
+        os.chdir(self.base)
     def __str__(self):
         return self.base
     def make(self):
-        return [os.makedirs(x) for x in [self.input,self.output]]        
-    def input_files(self):
-        return os.listdir(self.input)
-    def output_files(self):
-        return os.listdir(self.output)
+        """Cria as pastas input e output"""
+        return [os.makedirs(x) for x in [self.input,self.output]]
+    def list_input_files(self,e='',s='',p=False) -> list:
+        """Retorna os arquvios da pasta input.\nFiltros: end = sufixo, start = prefixo, print = bool """
+        return [print(f"{self.output_files().index(filename)} - {filename}") if p == True else os.listdir(self.output) for filename in self.output_files() if filename.endswith(e) and filename.startswith(s)]
+    def list_output_files(self,e='',s='',p=False) -> list:
+        """Retorna os arquvios da pasta output.\nFiltros: end = sufixo, start = prefixo, print = bool """
+        return [print(f"{self.output_files().index(filename)} - {filename}") if p == True else os.listdir(self.output) for filename in self.output_files() if filename.endswith(e) and filename.startswith(s)]
     def input_clear(self):
-        return [os.remove(os.path.join(self.input,file)) for file in self.input_files() ]
+        """Limpa a pasta input"""
+        return [os.remove(os.path.join(self.input,file)) for file in self.input_files()]
     def output_clear(self):
+        """Limpa a pasta output"""
         return [os.remove(os.path.join(self.output,file)) for file in self.output_files()]
-
-dir = Diretorio()
