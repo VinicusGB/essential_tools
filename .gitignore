@@ -1,7 +1,9 @@
 *.env
 .env
-*.csv
 *.log
 .log
 */input/*
 */output/*
+*.csv
+*.pdf
+*.txt
