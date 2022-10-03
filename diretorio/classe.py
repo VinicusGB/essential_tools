@@ -1,3 +1,4 @@
+from datetime import datetime
 from subprocess import os
 
 class Diretorio():
@@ -26,3 +27,11 @@ class Diretorio():
     def output_clear(self):
         """Limpa a pasta output"""
         return [os.remove(os.path.join(self.output,file)) for file in self.output_files()]
+    def save_output_file(self,filename_output=datetime.now(),f='csv',t='a',e='utf-8',contexts=''):
+        """Salva o arquivo na pasta de outputs. filename_output = nome do arquivo\nf = formato do arquivo final\nt = tipo de acesso ao arquivo (a - adiciona nova linha, w = sobreescreve o testo\ne = enconding)"""
+        with open(f"{os.path.join(self.output,filename_output)}.{f}",{t},encoding='utf-8') as output_file:
+            output_file.write(contexts)
+    def read_inputs_files(self,files = len(list_input_files)):
+        for file in self.list_input_files():
+            with open(f"{os.path.join(self.output,file)}","r") as output_file:
+                output_file.readlines()
