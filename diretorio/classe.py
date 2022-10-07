@@ -1,5 +1,8 @@
 from datetime import datetime
+from lib2to3.pytree import convert
 from subprocess import os
+
+from numpy import empty, iterable
 
 class Diretorio():
     '''
@@ -31,7 +34,24 @@ class Diretorio():
         """Salva o arquivo na pasta de outputs. filename_output = nome do arquivo\nf = formato do arquivo final\nt = tipo de acesso ao arquivo (a - adiciona nova linha, w = sobreescreve o testo\ne = enconding)"""
         with open(f"{os.path.join(self.output,filename_output)}.{f}",{t},encoding='utf-8') as output_file:
             output_file.write(contexts)
-    def input_read_files(self,files):
+    def input_read_files(self,files,num):
+        print('arquvios files')
+        print(type(files))
+        #print(files)
+        print('arquvios files[num]')
+        print(type(files[num]))
+        print(files[num])
+        files1 = iter(files)
+        print(type(files1))
+        print(files1)
+        conteudos = ''
         for file in files:
-            with open(f"{os.path.join(self.output,file)}","r") as output_file:
-                output_file.readlines()
+            print(file)
+            enc = open(f"{os.path.join(self.input,file)}","r").encoding
+            print(enc)
+            with open(f"{os.path.join(self.input,file)}","r",encoding=enc,errors='ignore') as input_file:
+                conteudo = ''
+                for line in input_file.readlines():
+                    conteudo += line
+                conteudos += conteudo
+            #print(conteudos)
