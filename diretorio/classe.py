@@ -30,9 +30,10 @@ class Diretorio():
     def output_clear(self):
         """Limpa a pasta output"""
         return [os.remove(os.path.join(self.output,file)) for file in self.output_files()]
-    def output_save_file(self,filename_output=datetime.now(),f='csv',t='a',e='utf-8',contexts=''):
+    def output_save_file(self,filename_output=datetime.today(),f='csv',t='w',e='utf-8',contexts=''):
         """Salva o arquivo na pasta de outputs. filename_output = nome do arquivo\nf = formato do arquivo final\nt = tipo de acesso ao arquivo (a - adiciona nova linha, w = sobreescreve o testo\ne = enconding)"""
-        with open(f"{os.path.join(self.output,filename_output)}.{f}",{t},encoding='utf-8') as output_file:
+        filename_output = str(filename_output).replace(' ','_').replace(':','_').replace('.','_')
+        with open(f"{os.path.join(self.output,filename_output)}.{f}",mode=t,encoding=e) as output_file:
             output_file.write(contexts)
     def input_read_files(self,files,num):
         print('arquvios files')
