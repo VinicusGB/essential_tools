@@ -13,11 +13,11 @@ from .fundos import *
 #BOLD = '\033[;1m'
 
 def MENSAGEM_SUCESSO(TEXTO):
-        print(f"{Fore.GREEN}{Style.BRIGHT}{TEXTO}{Fore.RESET}")
+        print(f"{Fore.GREEN}{Style.BRIGHT}{TEXTO}{Fore.RESET}{Style.RESET_ALL}")
 def MENSAGEM_ATENCAO(TEXTO:str):
-        print(f"{Fore.YELLOW}{Style.BRIGHT}{TEXTO}{Fore.RESET}")
+        print(f"{Fore.YELLOW}{Style.BRIGHT}{TEXTO}{Fore.RESET}{Style.RESET_ALL}")
 def MENSAGEM_ALERTA(TEXTO):
-        print(f"{Fore.RED}{Style.BRIGHT}{TEXTO}{Fore.RESET}")
+        print(f"{Fore.RED}{Style.BRIGHT}{TEXTO}{Fore.RESET}{Style.RESET_ALL}")
 def MENSAGEM_INFORME(TEXTO):
         print(f"{Back.BLUE}{Fore.WHITE}{Style.BRIGHT}{TEXTO}{Style.RESET_ALL}")
 def MENSAGEM_ERRO(TEXTO):
