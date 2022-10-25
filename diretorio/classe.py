@@ -33,15 +33,15 @@ class Diretorio():
         with open(f"{os.path.join(self.output,filename_output)}.{f}",mode=t,encoding=e) as output_file:
             output_file.write(contexts)
     def input_read_files(self,files,num):
-        print('arquvios files')
-        print(type(files))
+        #print('arquvios files')
+        #print(type(files))
         #print(files)
-        print('arquvios files[num]')
-        print(type(files[num]))
-        print(files[num])
-        files1 = iter(files)
-        print(type(files1))
-        print(files1)
+        #print('arquvios files[num]')
+        #print(type(files[num]))
+        #print(files[num])
+        #files1 = iter(files)
+        #print(type(files1))
+        #print(files1)
         conteudos = ''
         for file in files:
             print(file)
@@ -52,4 +52,4 @@ class Diretorio():
                 for line in input_file.readlines():
                     conteudo += line
                 conteudos += conteudo
-            #print(conteudos)
+        return conteudos

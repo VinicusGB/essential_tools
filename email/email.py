@@ -1,4 +1,6 @@
+from base64 import encode
 from email.message import EmailMessage
+from quopri import encodestring
 import smtplib
 
 class EnviarEmailSMTP():
@@ -23,7 +25,7 @@ class EnviarEmailSMTP():
             print("E-mail enviado!")
         except Exception as erro:
             print("Não foi possível enviar o e-mail. Erro:", erro)
-    def enviar_arquivos(self,EMAIL_FROM,EMAIL_SUBJECT,EMAIL_MESSAGE,FILES=[],HTML_CONTENT=False):
+    def enviar_com_arquivos(self,EMAIL_FROM,EMAIL_SUBJECT,EMAIL_MESSAGE,FILES=[],HTML_CONTENT=False):
         MESSAGE = EmailMessage()
         MESSAGE['Subject'] = EMAIL_SUBJECT
         MESSAGE['From'] = self.USERNAME
@@ -41,6 +43,23 @@ class EnviarEmailSMTP():
                 subtype='octet-stream',
                 filename=file_name
             )
+        try:
+            with smtplib.SMTP(self.SMTP_SERVER,self.SMTP_PORT) as s:
+                s.starttls()
+                s.login(self.USERNAME,self.PASSWORD)
+                s.send_message(MESSAGE)
+            print("E-mail enviado!")
+        except Exception as erro:
+            print("Não foi possível enviar o e-mail. Erro:", erro)
+    def enviar_html(self,EMAIL_FROM,EMAIL_SUBJECT,EMAIL_MESSAGE,HTML_CONTENT=False):
+        MESSAGE = EmailMessage()
+        MESSAGE['Subject'] = EMAIL_SUBJECT
+        MESSAGE['From'] = self.USERNAME
+        MESSAGE['To'] = EMAIL_FROM.split(",")
+        if HTML_CONTENT:
+            MESSAGE.add_alternative(f"<!DOCTYPE html><html><meta charset='utf-8'/><body>{EMAIL_MESSAGE}</body></html>",subtype='html')
+        else:
+            MESSAGE.set_content(EMAIL_MESSAGE)
         try:
             with smtplib.SMTP(self.SMTP_SERVER,self.SMTP_PORT) as s:
                 s.starttls()
