@@ -2,8 +2,11 @@
 .env
 *.log
 .log
+*.db
+.db
 */input/*
 */output/*
+*/__pycache__/*
 *.csv
 *.pdf
 *.txt
