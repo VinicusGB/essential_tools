@@ -6,13 +6,6 @@
 from email.message import EmailMessage
 import smtplib
 
-#EMAIL = 'gabrielfelippe90@gmail.com'
-EMAIL = ""
-#SENHA = input('Digite a senha do seu Email: ')
-SENHA = ""
-SMTP_USERNAME = ""
-SMTP_PASSWORD = ""
-
 msg = EmailMessage()
 msg['Subject'] = 'Linguagem Python'
 msg['From'] = EMAIL
