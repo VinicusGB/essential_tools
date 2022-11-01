@@ -1,7 +1,6 @@
-from base64 import encode
-from email.message import EmailMessage
-from quopri import encodestring
 import smtplib
+from email.message import EmailMessage
+
 
 class EnviarEmailSMTP():
     """Enviar e-mail SMTP"""
