@@ -1,6 +1,8 @@
 from datetime import datetime
 from subprocess import os
 
+import unicodedata
+
 class Diretorio():
     '''
     Classe base de diretório para projetos
@@ -17,16 +19,16 @@ class Diretorio():
         return [os.makedirs(x) for x in [self.input,self.outputs]]
     def input_list_files(self,e='',s='',p=False):
         """Retorna os arquvios da pasta input.\nFiltros: end = sufixo, start = prefixo, p = printa os valores na tela (True/False) """
-        return [f"{os.listdir(self.input).index(filename)} - {filename}" if p == True else os.path.join(self.input,filename) for filename in os.listdir(self.input) if filename.endswith(e) and filename.startswith(s)]
+        return [f"{os.listdir(self.inputs).index(filename)} - {filename}" if p == True else os.path.join(self.inputs,filename) for filename in os.listdir(self.inputs) if filename.endswith(e) and filename.startswith(s)]
     def output_list_files(self,e='',s='',p=False):
         """Retorna os arquvios da pasta output.\nFiltros: end = sufixo, start = prefixo, print = bool """
         return [f"{os.listdir(self.outputs).index(filename)} - {filename}" if p == True else os.path.join(self.outputs,filename) for filename in os.listdir(self.outputs) if filename.endswith(e) and filename.startswith(s)]
     def input_clear(self):
         """Limpa a pasta input"""
-        return [os.remove(os.path.join(self.input,file)) for file in self.input_list_files()]
+        return [os.remove(os.path.join(self.inputs,file)) for file in self.input_list_files()]
     def output_clear(self):
         """Limpa a pasta output"""
-        return [os.remove(os.path.join(self.outputs,file)) for file in self.outputs_list_files()]
+        return [os.remove(os.path.join(self.outputs,file)) for file in self.output_list_files()]
     def output_save_file(self,filename_output=datetime.today(),f='csv',t='w',e='utf-8',contexts=''):
         """Salva o arquivo na pasta de outputs. filename_output = nome do arquivo\nf = formato do arquivo final\nt = tipo de acesso ao arquivo (a - adiciona nova linha, w = sobreescreve o testo\ne = enconding)"""
         filename_output = str(filename_output).replace(' ','_').replace(':','_').replace('.','_')
@@ -53,3 +55,8 @@ class Diretorio():
                     conteudo += line
                 conteudos += conteudo
         return conteudos
+    def clean_string(string):
+        string = string.replace(" ", "_")
+        string = re.sub("[-.]", "", string)
+        string = unicodedata.normalize("NFKD", string).encode("ascii", "ignore").decode("utf-8")
+        return string
