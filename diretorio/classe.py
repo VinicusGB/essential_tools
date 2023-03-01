@@ -2,6 +2,7 @@ from datetime import datetime
 from subprocess import os
 
 import unicodedata
+import re
 
 class Diretorio():
     '''
@@ -55,7 +56,7 @@ class Diretorio():
                     conteudo += line
                 conteudos += conteudo
         return conteudos
-    def clean_string(string):
+    def clean_string(self,string):
         string = string.replace(" ", "_")
         string = re.sub("[-.]", "", string)
         string = unicodedata.normalize("NFKD", string).encode("ascii", "ignore").decode("utf-8")
