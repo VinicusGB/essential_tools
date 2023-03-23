@@ -17,7 +17,7 @@ class Diretorio():
         return self.base
     def make(self) -> None:
         """Cria as pastas input e output"""
-        return [os.makedirs(x) for x in [self.input,self.outputs]]
+        return [os.makedirs(x) for x in [self.inputs,self.outputs]]
     def input_list_files(self,e='',s='',p=False):
         """Retorna os arquvios da pasta input.\nFiltros: end = sufixo, start = prefixo, p = printa os valores na tela (True/False) """
         return [f"{os.listdir(self.inputs).index(filename)} - {filename}" if p == True else os.path.join(self.inputs,filename) for filename in os.listdir(self.inputs) if filename.endswith(e) and filename.startswith(s)]
@@ -61,3 +61,4 @@ class Diretorio():
         string = re.sub("[-.]", "", string)
         string = unicodedata.normalize("NFKD", string).encode("ascii", "ignore").decode("utf-8")
         return string
+    def list_dir(self)
